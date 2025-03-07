@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import java.util.ArrayList;
 
-import com.example.apiExceltic.sergioMostacero.dto.RoleDTO;
+import com.example.demo.DTO.DestinoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -37,5 +37,7 @@ public class Destino {
 
     @OneToMany(mappedBy = "destino", cascade = CascadeType.ALL) 
     private List<Usuario> usuarios = new ArrayList<>();
+
+
 
 }

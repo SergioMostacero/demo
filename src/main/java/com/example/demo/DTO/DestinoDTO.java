@@ -18,8 +18,8 @@ public class DestinoDTO {
     @NotBlank(message = "Nombre obligatorio")
     private String nombre;
 
-    @NotBlank(message = "imagen obligatorio")
-    private String imagen;
+    @NotBlank(message = "Imagen de bandera obligatoria")
+    private String banderaURL;
 
     UsuarioDTO usuarioDTO;
 }

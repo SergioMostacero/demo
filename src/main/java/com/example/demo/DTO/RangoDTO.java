@@ -16,6 +16,9 @@ import lombok.Setter;
 public class RangoDTO {
 
     @NotBlank(message = "Nombre de rango obligatorio")
-    private String name;
+    private String nombre;
+
+    @NotBlank(message = "Imagen de medalla obligatoria")
+    private String medallaURL;
 
 }

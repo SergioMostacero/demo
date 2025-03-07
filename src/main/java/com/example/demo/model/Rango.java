@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.demo.DTO.RangoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -31,7 +32,7 @@ public class Rango{
     private Long id;
 
     @NotBlank(message = "Nombre de rango obligatorio")
-    private String name;
+    private String nombre;
 
 
     @OneToMany(mappedBy = "rango")
