@@ -4,8 +4,10 @@ import com.example.demo.common.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -29,10 +31,10 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/**").permitAll()
-                .requestMatchers("/usuario/**").hasRole("ADMIN")
+                .requestMatchers("/usuario/**").hasAnyRole("ADMIN", "USER")
                 .requestMatchers("/vuelo/**").hasAnyRole("ADMIN", "USER")
                 .requestMatchers("/destino/**").hasAnyRole("ADMIN", "USER")
-                .requestMatchers("/rango/**").hasRole("ADMIN")
+                .requestMatchers("/rango/**").hasAnyRole("ADMIN", "USER")
                 .anyRequest().authenticated()
             )
             .sessionManagement(session -> session
@@ -50,6 +52,11 @@ public class SecurityConfig {
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
     }
 
     @Bean

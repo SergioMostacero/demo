@@ -35,7 +35,7 @@ public class Destino {
     @NotBlank(message = "Nombre de destino obligatorio")
     private String nombre;
 
-    @OneToMany(mappedBy = "destino", cascade = CascadeType.ALL) 
+    @OneToMany(mappedBy = "destino", cascade = CascadeType.ALL)
     private List<Usuario> usuarios = new ArrayList<>();
 
 
